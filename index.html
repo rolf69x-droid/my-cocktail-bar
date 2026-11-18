@@ -23,7 +23,7 @@ const toTry=[
 {id:'try-presidente',name:'El Presidente',category:'Rum',note:'Elegant Cuban-style rum cocktail; the classic uses blanc vermouth, but dry vermouth can work.',ingredients:[['Cuban rum','45 ml'],['Dry vermouth','20 ml'],['Orange curaçao','10 ml'],['Grenadine','5 ml']],steps:['Stir with ice until chilled.','Strain into a coupe and garnish with orange peel.']},
 {id:'try-gaudin',name:'Lucien Gaudin',category:'Gin',note:'A citrusy, more complex Negroni relative.',ingredients:[['Gin','45 ml'],['Campari','15 ml'],['Dry vermouth','15 ml'],['Orange liqueur','15 ml']],steps:['Stir with ice until chilled.','Strain into a chilled coupe.']}
 ];
-let tryRatings=get('cocktail_try_ratings_v33',{});
+let tryRatings;
 function drinkImage(r){
  const name=r.name.toLowerCase();
  const tall=/collins|mojito|mule|spritz|americano|tonic|paloma|sunrise|fizz|bloody|colada|bellini|mimosa/.test(name);
@@ -52,6 +52,7 @@ function renderTryDetail(id){
 const aliases={'Tanqueray No. Ten':['Tanqueray No. Ten'], 'Gin':['Gin','Tanqueray No. Ten','Monkey 47','Bobby’s Gin','Tanqueray Sevilla','Amuerte Gin','Seven Oaks Gin'], 'Jim Beam bourbon':['Jim Beam bourbon','Jack Daniel’s','Other bourbon or whisky'],'Sweet red vermouth':['Sweet red vermouth','Cocchi Vermouth di Torino Rosso'],'Cocchi Vermouth di Torino Rosso':['Cocchi Vermouth di Torino Rosso','Sweet red vermouth']};
 const defaults=['Jim Beam bourbon','Jack Daniel’s','Gin','Tanqueray No. Ten','Monkey 47','Campari','Cocchi Vermouth di Torino Rosso','Simple syrup','Angostura bitters','Tonic water','Coke','Ice','Orange','Lemon','Soda water','Sweet red vermouth','Dry vermouth','Mint','Aperol','Amaro Nonino','Absinthe','Peychaud’s bitters'];
 const get=(k,f)=>{try{let v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}};const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{alert('Your browser could not save changes.')}};
+tryRatings=get('cocktail_try_ratings_v33',{});
 const ginSeed=['Tanqueray No. Ten','Monkey 47','Tanqueray Sevilla','Bobby’s Gin','Amuerte Gin','Seven Oaks Gin','London Dry Gin'];
 const tonicSeed=['Schweppes Indian Tonic','Schweppes Zero Tonic','Fever-Tree Mediterranean Tonic','Fever-Tree Indian Tonic','Fever-Tree Refreshingly Light Tonic'];
 let gins=get('cocktail_gins_v3',ginSeed),tonics=get('cocktail_tonics_v3',tonicSeed),pairings=get('cocktail_pairings_v3',[]),gntMode='gin',gntSelected=null;
